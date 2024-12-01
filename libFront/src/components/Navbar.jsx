@@ -10,8 +10,6 @@ const Navbar = () => {
   useEffect(() => {
     const userStatus = Cookies.get("userStatus");
     const userRole = Cookies.get("userRole");
-    console.log(userRole);
-    console.log(userStatus)
 
     if (userStatus === "signedIn") {
       setIsSignedIn(true);
@@ -40,9 +38,13 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <span
+          className="navbar-brand"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        >
           MyApp
-        </a>
+        </span>
         <button
           className="navbar-toggler"
           type="button"
@@ -58,7 +60,7 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
             {isSignedIn ? (
               <li className="nav-item dropdown">
-                <a
+                <span
                   className="nav-link dropdown-toggle text-dark"
                   id="accountDropdown"
                   role="button"
@@ -66,42 +68,66 @@ const Navbar = () => {
                   aria-expanded="false"
                 >
                   Account
-                </a>
+                </span>
                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                   <li>
-                    <a className="dropdown-item" href="/account/profile">
+                    <span
+                      className="dropdown-item"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => navigate("/Account/Profile")}
+                    >
                       Profile
-                    </a>
+                    </span>
                   </li>
                   {!isAdmin ? (
                     <>
                       <li>
-                        <a className="dropdown-item" href="/reservations">
+                        <span
+                          className="dropdown-item"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/reservations")}
+                        >
                           My Reservations
-                        </a>
+                        </span>
                       </li>
                       <li>
-                        <a href="#" className="dropdown-item text-danger" onClick={confirmDelete}>
+                        <span
+                          className="dropdown-item text-danger"
+                          style={{ cursor: "pointer" }}
+                          onClick={confirmDelete}
+                        >
                           Delete
-                        </a>
+                        </span>
                       </li>
                     </>
                   ) : (
                     <>
                       <li>
-                        <a className="dropdown-item" href="/books/manage">
+                        <span
+                          className="dropdown-item"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/Books/Manage")}
+                        >
                           Manage Books
-                        </a>
+                        </span>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/reservations/manage">
+                        <span
+                          className="dropdown-item"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/Reservations/Manage")}
+                        >
                           Manage Reservations
-                        </a>
+                        </span>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/rented/manage">
+                        <span
+                          className="dropdown-item"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => navigate("/Rented/Manage")}
+                        >
                           Manage Rented
-                        </a>
+                        </span>
                       </li>
                     </>
                   )}
@@ -109,23 +135,35 @@ const Navbar = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <button className="dropdown-item text-danger" onClick={handleLogout}>
+                    <span
+                      className="dropdown-item text-danger"
+                      style={{ cursor: "pointer" }}
+                      onClick={handleLogout}
+                    >
                       Logout
-                    </button>
+                    </span>
                   </li>
                 </ul>
               </li>
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link text-dark" href="/login">
+                  <span
+                    className="nav-link text-dark"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => navigate("/login")}
+                  >
                     Login
-                  </a>
+                  </span>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link text-dark" href="/register">
+                  <span
+                    className="nav-link text-dark"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => navigate("/register")}
+                  >
                     Register
-                  </a>
+                  </span>
                 </li>
               </>
             )}
